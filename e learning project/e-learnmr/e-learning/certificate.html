@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Certificate of Completion</title>
+  <style>
+    body {
+      font-family: 'Georgia', serif;
+      background: #f9f9f9;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .certificate {
+      background: white;
+      border: 8px solid #28b485;
+      border-radius: 12px;
+      padding: 40px;
+      max-width: 800px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    }
+    .certificate h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #2e7d32;
+    }
+    .certificate h2 {
+      font-size: 2rem;
+      margin: 20px 0;
+      color: #1565c0;
+    }
+    .certificate p {
+      font-size: 1.2rem;
+      margin: 10px 0;
+    }
+    .username {
+      font-weight: bold;
+      font-size: 1.6rem;
+      color: #000;
+    }
+    .course {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #28b485;
+    }
+    .date {
+      margin-top: 30px;
+      font-size: 1rem;
+      color: #555;
+    }
+    .download-btn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background: #28b485;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    .download-btn:hover {
+      background: #239f75;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="certificate" id="certificate">
+    <h1>Certificate of Completion</h1>
+    <p>This is to certify that</p>
+    <p class="username" id="username">[Student Name]</p>
+    <p>has successfully completed the course</p>
+    <p class="course" id="courseName">[Course Name]</p>
+    <p class="date" id="date"></p>
+    <button class="download-btn" onclick="downloadCertificate()">⬇ Download as PDF</button>
+  </div>
+
+  <script>
+    // Get user + course
+    const params = new URLSearchParams(window.location.search);
+    const course = params.get("course") || "Unknown Course";
+    const user = localStorage.getItem("loggedInUser") || "Student";
+
+    // Map course codes to full names
+    const courseNames = {
+      "python": "Python Programming",
+      "webdev": "Web Development",
+      "cloud": "Cloud Computing"
+    };
+
+    document.getElementById("username").innerText = user;
+    document.getElementById("courseName").innerText = courseNames[course] || course;
+    document.getElementById("date").innerText = "Date: " + new Date().toLocaleDateString();
+
+    // Simple download as PDF
+    function downloadCertificate() {
+      const printContents = document.getElementById("certificate").innerHTML;
+      const originalContents = document.body.innerHTML;
+      document.body.innerHTML = printContents;
+      window.print();
+      document.body.innerHTML = originalContents;
+    }
+  </script>
+
+</body>
+</html>

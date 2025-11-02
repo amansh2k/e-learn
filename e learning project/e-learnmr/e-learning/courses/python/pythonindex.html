@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Python Programming - E-Learn</title>
+<style>
+/* ---------- HEADER ---------- */
+body { margin:0; font-family: Arial, sans-serif; background:#e3f2fd; }
+header {
+  width: 100%;
+  background: #28b485;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+}
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.logo { font-size: 1.8rem; font-weight: bold; }
+nav a { color: white; text-decoration: none; margin: 0 10px; }
+nav a:hover { text-decoration: underline; }
+.header-search { display: flex; align-items: center; gap:5px; }
+.header-search input {
+  padding: 6px 10px;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  outline: none;
+}
+.header-search button {
+  padding: 6px 12px;
+  border-radius: 0 5px 5px 0;
+  border: none;
+  background: #1e7a36;
+  color: white;
+  cursor: pointer;
+}
+.header-search button:hover { background: #155723; }
+
+/* ---------- HERO ---------- */
+.hero { text-align:center; padding:60px 20px; background: linear-gradient(to right, #7ed56f, #28b485); color:white; }
+.hero h2 { font-size:2.5rem; margin-bottom:15px; }
+.hero p { font-size:1.2rem; }
+
+/* ---------- COURSE LEVEL BUTTONS ---------- */
+.course-levels { display:flex; justify-content:center; gap:30px; margin:50px 0; flex-wrap:wrap; }
+.course-card {
+  background:white; padding:30px; border-radius:12px; width:250px; text-align:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.15); cursor:pointer; transition: transform 0.3s, box-shadow 0.3s;
+}
+.course-card h3 { color:#1565c0; margin-bottom:10px; }
+.course-card p { font-size:0.95rem; margin-bottom:15px; color:#333; }
+.course-card:hover { transform: translateY(-5px); box-shadow:0 6px 15px rgba(0,0,0,0.2); }
+.course-card button {
+  padding:10px 20px; background:#28b485; color:white; border:none; border-radius:6px; cursor:pointer;
+}
+.course-card button:hover { background:#239b76; }
+
+/* ---------- FOOTER ---------- */
+footer { text-align:center; padding:20px; background:#f0f0f0; margin-top:50px; }
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+  .course-levels { flex-direction:column; align-items:center; gap:20px; }
+  .hero h2 { font-size:2rem; }
+  .hero p { font-size:1rem; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <h1 class="logo">E-Learn</h1>
+    <nav id="navbar">
+      <a href="../../index.html">Home</a>
+      <a href="login.html" class="auth-link">Login</a>
+      <a href="signup.html" class="auth-link">Signup</a>
+    </nav>
+    <div class="header-search">
+      <input id="courseSearch" type="text" placeholder="Search courses...">
+      <button onclick="searchCourse()">Search</button>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <h2>Python Programming</h2>
+  <p>Learn Python from Beginner to Advanced levels with interactive quizzes, videos, and projects.</p>
+</section>
+
+<!-- Course Levels -->
+<section class="course-levels">
+  <div class="course-card">
+    <h3>Beginner</h3>
+    <p>Start your Python journey with basics and simple programs.</p>
+    <button onclick="window.location.href='python-beginner.html'">Go to Beginner</button>
+  </div>
+  <div class="course-card">
+    <h3>Intermediate</h3>
+    <p>Enhance your skills with OOP, data structures, and small projects.</p>
+    <button onclick="window.location.href='python-intermediate.html'">Go to Intermediate</button>
+  </div>
+  <div class="course-card">
+    <h3>Advanced</h3>
+    <p>Master advanced Python topics like web scraping, APIs, and automation.</p>
+    <button onclick="window.location.href='python-advanced.html'">Go to Advanced</button>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 E-Learn. Learn Better. Learn Smarter.</p>
+</footer>
+
+<script>
+// Navbar login/logout logic
+document.addEventListener("DOMContentLoaded", function() {
+  const nav = document.getElementById("navbar");
+  const user = localStorage.getItem("loggedInUser");
+  if(user){
+    document.querySelectorAll(".auth-link").forEach(el => el.remove());
+    const welcomeSpan = document.createElement("span");
+    welcomeSpan.innerHTML = `Welcome, <b>${user}</b>`;
+    welcomeSpan.style.margin = "0 10px";
+    const logoutLink = document.createElement("a");
+    logoutLink.href = "#"; logoutLink.textContent = "Logout"; logoutLink.style.marginLeft="10px";
+    logoutLink.onclick = function(){ localStorage.removeItem("loggedInUser"); window.location.href="python.html"; };
+    nav.appendChild(welcomeSpan); nav.appendChild(logoutLink);
+  }
+});
+
+// Search bar functionality
+function searchCourse(){
+  const query = document.getElementById("courseSearch").value.trim().toLowerCase();
+  if(!query) return alert("Enter a course name.");
+  const courses = {
+    "python beginner":"python-beginner.html",
+    "python intermediate":"python-intermediate.html",
+    "python advanced":"python-advanced.html"
+  };
+  for(const key in courses){ if(key.includes(query)){ window.location.href = courses[key]; return; } }
+  alert("Course not found!");
+}
+</script>
+
+</body>
+</html>

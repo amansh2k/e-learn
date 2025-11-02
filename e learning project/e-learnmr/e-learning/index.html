@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>E-Learn Platform</title>
+<style>
+/* ---------- HEADER ---------- */
+header {
+  width: 100%;
+  background: #28b485;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+.header-container {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.logo { font-size: 1.8rem; font-weight: bold; }
+nav a { color: white; text-decoration: none; margin: 0 10px; }
+nav a:hover { text-decoration: underline; }
+.header-search { display: flex; align-items: center; gap: 5px; position: relative; }
+.header-search input {
+  padding: 6px 10px;
+  border-radius: 5px 0 0 5px;
+  border: none;
+  outline: none;
+}
+.header-search button {
+  padding: 6px 12px;
+  border-radius: 0 5px 5px 0;
+  border: none;
+  background: #1e7a36;
+  color: white;
+  cursor: pointer;
+}
+.header-search button:hover { background: #155723; }
+
+/* ---------- HERO ---------- */
+.hero { position: relative; width: 100%; height: 60vh; overflow: hidden; }
+.hero-slideshow img {
+  position:absolute; top:0; left:0;
+  width:100%; height:100%; object-fit:cover;
+  opacity:0; transition: opacity 1.5s ease-in-out;
+}
+.hero-slideshow img.active { opacity:1; }
+.hero-slideshow .overlay {
+  position:absolute; top:0; left:0; width:100%; height:100%;
+  background: rgba(0,0,0,0.25); z-index:2;
+}
+.hero-content {
+  position: relative; z-index:3; display: flex; align-items: center;
+  justify-content: center; width:100%; height:100%; color:white; text-align:center;
+}
+.hero-content h2 { font-size: 2.5rem; margin-bottom: 15px; }
+.hero-content p { font-size: 1.2rem; }
+
+/* ---------- FLASHCARD CAROUSEL ---------- */
+.carousel-container {
+  max-width:1200px; margin:50px auto; overflow:hidden; position: relative;
+}
+.carousel {
+  display: flex; transition: transform 0.5s ease; gap:20px;
+}
+.card {
+  min-width: 220px; background:#e3f2fd; border-radius:12px;
+  padding:20px; text-align:center; cursor:pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.card img {
+  width:100%; border-radius:10px; height:130px; object-fit:cover;
+}
+.card h3 { margin:10px 0 5px; color:#1565c0; }
+.card p { font-size:0.9rem; color:#333; }
+.card:hover { transform: translateY(-5px); box-shadow:0 6px 15px rgba(0,0,0,0.2); }
+.carousel-btn {
+  position:absolute; top:50%; transform:translateY(-50%);
+  background:rgba(0,0,0,0.3); color:white; border:none; padding:10px;
+  cursor:pointer; border-radius:50%;
+}
+.carousel-btn:hover { background:rgba(0,0,0,0.6); }
+.prev { left:10px; } .next { right:10px; }
+
+/* ---------- INFO SECTION ---------- */
+.info-section { max-width:1200px; margin:50px auto; text-align:center; padding:30px; }
+.info-section h2 { font-size:2rem; margin-bottom:20px; color:#1565c0; }
+.info-section p { font-size:1.1rem; line-height:1.6; color:#333; }
+
+/* ---------- FOOTER ---------- */
+footer { text-align:center; padding:20px; background:#f0f0f0; margin-top:50px; }
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:768px){
+  .hero-content h2 { font-size:2rem; }
+  .hero-content p { font-size:1rem; }
+  .carousel { gap:15px; }
+  .card { min-width:180px; }
+  .header-container { flex-direction: column; align-items: flex-start; gap:10px; }
+  .header-search { width:100%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <h1 class="logo">E-Learn</h1>
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="login.html" class="auth-link">Login</a>
+      <a href="signup.html" class="auth-link">Signup</a>
+    </nav>
+    <div class="header-search">
+      <input id="courseSearch" type="text" placeholder="Search courses..." oninput="showSuggestions()">
+      <button onclick="searchCourse()">Search</button>
+      <div id="suggestions" style="position:absolute; background:white; color:black; border:1px solid #ccc; width:200px; max-height:150px; overflow-y:auto; display:none; z-index:10;"></div>
+    </div>
+  </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+  <div class="hero-slideshow">
+    <img src="images/python.jpg" class="slide active" alt="Python">
+    <img src="images/ai-ml.jpg" class="slide" alt="AI-ML">
+    <img src="images/devops.jpg" class="slide" alt="DevOps">
+    <img src="images/webdev.jpg" class="slide" alt="Web Dev">
+    <img src="images/java.jpg" class="slide" alt="Java">
+    <div class="overlay"></div>
+  </div>
+  <div class="hero-content">
+    <div>
+      <h2>Master Tech Skills from Anywhere</h2>
+      <p>Interactive courses, real-world projects, and expert mentors.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Flashcard Carousel -->
+<section class="carousel-container">
+  <button class="carousel-btn prev" onclick="moveCarousel(-1)">❮</button>
+  <div class="carousel" id="carousel">
+    <div class="card" onclick="window.location.href='courses/python/pythonindex.html'">
+      <img src="images/python.jpg" alt="Python"><h3>Python</h3><p>Learn Python basics to advanced projects.</p>
+    </div>
+    <div class="card" onclick="window.location.href='courses/ai-ml/index.html'">
+      <img src="images/ai-ml.jpg" alt="AI-ML"><h3>AI-ML</h3><p>Master AI & Machine Learning concepts.</p>
+    </div>
+    <div class="card" onclick="window.location.href='courses/devops/index.html'">
+      <img src="images/devops.jpg" alt="DevOps"><h3>DevOps</h3><p>CI/CD, Docker, Kubernetes & automation.</p>
+    </div>
+    <div class="card" onclick="window.location.href='courses/webdev/index.html'">
+      <img src="images/webdev.jpg" alt="Web Dev"><h3>Web Dev</h3><p>Modern web development with HTML, CSS & JS.</p>
+    </div>
+    <div class="card" onclick="window.location.href='courses/java/index.html'">
+      <img src="images/java.jpg" alt="Java"><h3>Java</h3><p>Object-oriented programming in Java.</p>
+    </div>
+  </div>
+  <button class="carousel-btn next" onclick="moveCarousel(1)">❯</button>
+</section>
+
+<!-- Informative Section -->
+<section class="info-section">
+  <h2>Why Learning Here Makes a Difference</h2>
+  <p>Our courses provide hands-on experience, live projects, and expert mentorship. Gain practical knowledge, develop in-demand skills, and earn certifications to boost your career. Interactive lessons and project-based learning ensure you can apply your skills professionally.</p>
+</section>
+
+<footer>
+  <p>&copy; 2025 E-Learn. Learn Better. Learn Smarter.</p>
+</footer>
+
+<script>
+// Navbar login/logout logic
+document.addEventListener("DOMContentLoaded", function() {
+  const nav = document.getElementById("navbar");
+  const user = localStorage.getItem("loggedInUser");
+  if(user){
+    document.querySelectorAll(".auth-link").forEach(el => el.remove());
+    const welcomeSpan = document.createElement("span");
+    welcomeSpan.innerHTML = `Welcome, <b>${user}</b>`;
+    welcomeSpan.style.margin = "0 10px";
+    const logoutLink = document.createElement("a");
+    logoutLink.href = "#"; logoutLink.textContent = "Logout"; logoutLink.style.marginLeft="10px";
+    logoutLink.onclick = function(){ localStorage.removeItem("loggedInUser"); window.location.href="index.html"; };
+    nav.appendChild(welcomeSpan); nav.appendChild(logoutLink);
+  }
+});
+
+// Hero Slideshow
+let slides = document.querySelectorAll(".hero-slideshow img");
+let current = 0;
+function showNextSlide(){
+  slides[current].classList.remove("active");
+  current = (current + 1) % slides.length;
+  slides[current].classList.add("active");
+}
+setInterval(showNextSlide,4000);
+
+// Courses for search
+const courses = { 
+  "Python":"courses/python/pythonindex.html", 
+  "AI-ML":"courses/ai-ml/index.html", 
+  "DevOps":"courses/devops/index.html", 
+  "Web Dev":"courses/webdev/index.html", 
+  "Java":"courses/java/index.html" 
+};
+
+// Search bar autocomplete
+function showSuggestions() {
+  const input = document.getElementById("courseSearch").value.toLowerCase();
+  const suggestionsDiv = document.getElementById("suggestions");
+  suggestionsDiv.innerHTML = "";
+  if (!input) { suggestionsDiv.style.display = "none"; return; }
+
+  let matches = Object.keys(courses).filter(course => course.toLowerCase().includes(input));
+  if (matches.length === 0) { suggestionsDiv.style.display = "none"; return; }
+
+  matches.forEach(course => {
+    const div = document.createElement("div");
+    div.textContent = course;
+    div.style.padding = "5px 10px";
+    div.style.cursor = "pointer";
+    div.onmouseover = () => div.style.background = "#f0f0f0";
+    div.onmouseout = () => div.style.background = "white";
+    div.onclick = () => { window.location.href = courses[course]; };
+    suggestionsDiv.appendChild(div);
+  });
+
+  suggestionsDiv.style.display = "block";
+}
+
+function searchCourse() {
+  const query = document.getElementById("courseSearch").value.toLowerCase().trim();
+  if(!query) return alert("Enter a course name.");
+  for(const key in courses) { 
+    if(key.toLowerCase().includes(query)){ window.location.href = courses[key]; return; } 
+  }
+  alert("Course not found!");
+}
+
+// Hide suggestions when clicking outside
+document.addEventListener("click", function(event) {
+  if (!event.target.closest(".header-search")) {
+    document.getElementById("suggestions").style.display = "none";
+  }
+});
+
+// Carousel
+let carouselIndex = 0;
+const carousel = document.getElementById("carousel");
+const cardWidth = carousel.querySelector(".card").offsetWidth + 20;
+const maxIndex = carousel.children.length - Math.floor(carousel.parentElement.offsetWidth / cardWidth);
+function moveCarousel(direction){
+  carouselIndex += direction;
+  if(carouselIndex < 0) carouselIndex = 0;
+  if(carouselIndex > maxIndex) carouselIndex = maxIndex;
+  carousel.style.transform = `translateX(-${carouselIndex*cardWidth}px)`;
+}
+setInterval(()=>{ moveCarousel(1); if(carouselIndex>=maxIndex) carouselIndex=-1; },5000);
+</script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const nav = document.getElementById("navbar");
+  const user = localStorage.getItem("loggedInUser");
+
+  if (user) {
+    // Remove Login & Signup links
+    document.querySelectorAll(".auth-link").forEach(el => el.remove());
+
+    // Welcome text
+    const welcomeSpan = document.createElement("span");
+    welcomeSpan.innerHTML = `Welcome, <b>${user}</b>`;
+    welcomeSpan.style.margin = "0 10px";
+
+    // Dashboard link (styled like other nav links)
+    const dashboardLink = document.createElement("a");
+    dashboardLink.href = "dashboard.html";
+    dashboardLink.textContent = "Dashboard";
+    dashboardLink.classList.add("nav-link"); // keep same style
+
+    // Logout link (styled like other nav links)
+    const logoutLink = document.createElement("a");
+    logoutLink.href = "#";
+    logoutLink.textContent = "Logout";
+    logoutLink.classList.add("nav-link");
+    logoutLink.onclick = function() {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "index.html";
+    };
+
+    // Append in order: Welcome, Dashboard, Logout
+    nav.appendChild(welcomeSpan);
+    nav.appendChild(dashboardLink);
+    nav.appendChild(logoutLink);
+  }
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,335 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+/* Body */
+body {
+  background: #f8f9fa;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background: #28b485;
+  padding: 15px 20px;
+  color: white;
+}
+header .logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+header nav {
+  margin-top: 10px;
+}
+header nav a {
+  color: white;
+  margin-right: 15px;
+  text-decoration: none;
+  font-weight: 500;
+}
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Hero */
+.hero {
+  text-align: center;
+  padding: 80px 20px;
+  background: linear-gradient(to right, #7ed56f, #28b485);
+  color: white;
+}
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+/* Button */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: #28b485;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+.btn:hover {
+  background: #239b76;
+}
+
+/* Features & Cards */
+.features {
+  padding: 40px 20px;
+}
+.features h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card h3 {
+  margin-bottom: 10px;
+}
+
+/* Benefits */
+.benefits {
+  background: #fff;
+  padding: 40px 20px;
+}
+.benefits ul {
+  margin-top: 15px;
+  margin-left: 20px;
+  list-style: disc;
+}
+
+/* Instructors */
+.instructors {
+  text-align: center;
+  padding: 40px 20px;
+  background: #f0f0f0;
+}
+
+/* Newsletter */
+.newsletter {
+  text-align: center;
+  padding: 40px 20px;
+}
+.newsletter input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 250px;
+  margin-right: 10px;
+}
+.newsletter button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  background: #28b485;
+  color: white;
+  cursor: pointer;
+}
+.newsletter button:hover {
+  background: #239b76;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #e9ecef;
+  margin-top: 40px;
+}
+
+/* Content Area (Course Pages) */
+.content {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px 20px;
+}
+.content h2, .content h3 {
+  margin-bottom: 12px;
+  color: #28b485;
+}
+.content p, .content li {
+  margin-bottom: 10px;
+}
+
+/* Quiz */
+.quiz {
+  margin-top: 40px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  background: #f9f9f9;
+}
+.quiz h3 {
+  margin-bottom: 15px;
+}
+
+/* Exercises */
+.exercises {
+  margin-top: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  background: #fcfcfc;
+  border: 1px solid #e0e0e0;
+}
+.exercise {
+  margin-bottom: 18px;
+  padding-bottom: 8px;
+  border-bottom: 1px dashed #ddd;
+}
+.solution {
+  background: #f4f7fb;
+  padding: 10px;
+  border-radius: 6px;
+  margin-top: 8px;
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+
+/* Code blocks */
+pre {
+  background: #272822;
+  color: #f8f8f2;
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+/* Default Light Mode */
+body {
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #121212;
+    color: #f0f0f0;
+}
+
+button {
+    padding: 8px 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    margin: 5px;
+}
+
+/* Optional: style toggle differently in dark mode */
+body.dark-mode button {
+    background-color: #333;
+    color: #fff;
+}
+/* Ensure all text is readable in dark mode */
+body.dark-mode, 
+body.dark-mode main, 
+body.dark-mode .course-card, 
+body.dark-mode .quiz-section {
+    color: #f0f0f0; /* Light gray text */
+}
+
+body.dark-mode .quiz-question p,
+body.dark-mode .quiz-question label {
+    color: #f0f0f0; /* Ensure quiz text is visible */
+}
+
+body.dark-mode a {
+    color: #66aaff; /* Bright link color */
+}
+/* Center align all main content on course pages */
+main {
+    text-align: center; /* Center headings and paragraphs */
+}
+
+.course-card {
+    margin-left: auto;
+    margin-right: auto; /* Center the card itself */
+    text-align: center; /* Center text inside card */
+}
+
+.quiz-section {
+    margin-left: auto;
+    margin-right: auto; /* Center the quiz section */
+    text-align: center; /* Center quiz text */
+}
+
+.featured-courses,
+.why-choose,
+.instructors {
+    text-align: center; /* Center all homepage sections */
+}
+
+/* Optional: center-align form inputs in quiz */
+.quiz-question input[type="radio"] {
+    margin-right: 5px; /* slight spacing for radio buttons */
+}
+/* General semi-transparent content boxes */
+main, .course-card, .quiz-section, .featured-courses, .why-choose, .instructors {
+    background-color: rgba(255, 255, 255, 0.1); /* white with 10% opacity */
+    backdrop-filter: blur(8px); /* adds frosted glass effect */
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Dark mode adjustments for semi-transparent boxes */
+body.dark-mode main, 
+body.dark-mode .course-card, 
+body.dark-mode .quiz-section,
+body.dark-mode .featured-courses,
+body.dark-mode .why-choose,
+body.dark-mode .instructors {
+    background-color: rgba(255, 255, 255, 0.05); /* lighter transparency for dark mode */
+    color: #f0f0f0;
+}
+.youtube-videos {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 1000px;
+}
+
+.youtube-videos h2 {
+    margin-bottom: 20px;
+}
+
+.video-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.video-thumbnails a {
+    display: block;
+    width: 280px;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: rgba(255,255,255,0.1);
+    backdrop-filter: blur(6px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.video-thumbnails a:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+}
+
+.video-thumbnails img {
+    width: 100%;
+    display: block;
+}
+
+.video-thumbnails p {
+    padding: 10px;
+    font-weight: 500;
+}

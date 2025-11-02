@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python Beginner Course</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f5f7fa;
+      color: #333;
+    }
+    header {
+      background: #28b485; /* Green theme */
+      color: #fff;
+      padding: 15px 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 26px;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin: 0 12px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    main {
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    section {
+      margin-bottom: 30px;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    h2 {
+      color: #1565c0;
+      border-left: 5px solid #28b485;
+      padding-left: 10px;
+    }
+    .video-container {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .quiz-section form {
+      margin-top: 15px;
+    }
+    .quiz-section p {
+      font-weight: bold;
+      margin-top: 15px;
+    }
+    label {
+      display: block;
+      margin: 6px 0;
+      cursor: pointer;
+    }
+    button {
+      background: #28b485; /* Green buttons */
+      color: #fff;
+      border: none;
+      padding: 10px 18px;
+      font-size: 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 15px;
+    }
+    button:hover {
+      background: #1e8f66;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Python Programming - Beginner</h1>
+    <nav>
+      <a href="../../index.html">Home</a>
+      <a href="index.html">Python Course</a>
+      <a href="../webdev/index.html">Web Development</a>
+      <a href="../cloud/index.html">Cloud Computing</a>
+      <a href="../../dashboard.html">Dashboard</a>
+    </nav>
+  </header>
+
+  <main>
+    <section>
+      <h2>Welcome to Python (Beginner Level)</h2>
+      <p>This section introduces Python basics including syntax, variables, operators, and control structures. Watch the tutorial video below and then attempt the quiz to test your knowledge.</p>
+      
+      <div class="video-container">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/_uQrJ0TkZlc" title="Python Tutorial for Beginners" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section class="quiz-section">
+      <h2>Beginner Quiz (25 Questions)</h2>
+      <form id="quizForm">
+<div class="question"> <p>1. Python is a ______ language?</p> <label><input type="radio" name="q1" value="A"> Low-level</label> <label><input type="radio" name="q1" value="B"> High-level</label> <label><input type="radio" name="q1" value="C"> Assembly</label> </div> <div class="question"> <p>2. Which keyword is used to define a function in Python?</p> <label><input type="radio" name="q2" value="A"> func</label> <label><input type="radio" name="q2" value="B"> def</label> <label><input type="radio" name="q2" value="C"> function</label> </div> <div class="question"> <p>3. Which of the following is a valid variable name?</p> <label><input type="radio" name="q3" value="A"> 1name</label> <label><input type="radio" name="q3" value="B"> name1</label> <label><input type="radio" name="q3" value="C"> for</label> </div> <div class="question"> <p>4. What symbol is used for comments in Python?</p> <label><input type="radio" name="q4" value="A"> //</label> <label><input type="radio" name="q4" value="B"> #</label> <label><input type="radio" name="q4" value="C"> --</label> </div> <div class="question"> <p>5. Which data type is used to store True/False values?</p> <label><input type="radio" name="q5" value="A"> int</label> <label><input type="radio" name="q5" value="B"> bool</label> <label><input type="radio" name="q5" value="C"> str</label> </div> <div class="question"> <p>6. Which function is used to display output in Python?</p> <label><input type="radio" name="q6" value="A"> echo()</label> <label><input type="radio" name="q6" value="B"> print()</label> <label><input type="radio" name="q6" value="C"> printf()</label> </div> <div class="question"> <p>7. How do you take input from a user?</p> <label><input type="radio" name="q7" value="A"> get()</label> <label><input type="radio" name="q7" value="B"> input()</label> <label><input type="radio" name="q7" value="C"> scan()</label> </div> <div class="question"> <p>8. Which operator is used for exponentiation in Python?</p> <label><input type="radio" name="q8" value="A"> ^</label> <label><input type="radio" name="q8" value="B"> **</label> <label><input type="radio" name="q8" value="C"> exp()</label> </div> <div class="question"> <p>9. What is the output of <code>print(3 == 3)</code>?</p> <label><input type="radio" name="q9" value="A"> False</label> <label><input type="radio" name="q9" value="B"> True</label> <label><input type="radio" name="q9" value="C"> Error</label> </div> <div class="question"> <p>10. Which data type is mutable?</p> <label><input type="radio" name="q10" value="A"> tuple</label> <label><input type="radio" name="q10" value="B"> list</label> <label><input type="radio" name="q10" value="C"> str</label> </div> <div class="question"> <p>11. What is the correct way to start a for loop?</p> <label><input type="radio" name="q11" value="A"> for i in range(5):</label> <label><input type="radio" name="q11" value="B"> loop i to 5</label> <label><input type="radio" name="q11" value="C"> foreach i in 5</label> </div> <div class="question"> <p>12. How do you write an if condition in Python?</p> <label><input type="radio" name="q12" value="A"> if (x > y)</label> <label><input type="radio" name="q12" value="B"> if x > y:</label> <label><input type="radio" name="q12" value="C"> if x > y then</label> </div> <div class="question"> <p>13. Which function returns the length of a string or list?</p> <label><input type="radio" name="q13" value="A"> count()</label> <label><input type="radio" name="q13" value="B"> size()</label> <label><input type="radio" name="q13" value="C"> len()</label> </div> <div class="question"> <p>14. What is the correct way to import the math module?</p> <label><input type="radio" name="q14" value="A"> import math</label> <label><input type="radio" name="q14" value="B"> using math</label> <label><input type="radio" name="q14" value="C"> include math</label> </div> <div class="question"> <p>15. Which symbol is used for string concatenation?</p> <label><input type="radio" name="q15" value="A"> +</label> <label><input type="radio" name="q15" value="B"> &</label> <label><input type="radio" name="q15" value="C"> *</label> </div> <div class="question"> <p>16. What does <code>type("Hello")</code> return?</p> <label><input type="radio" name="q16" value="A"> int</label> <label><input type="radio" name="q16" value="B"> str</label> <label><input type="radio" name="q16" value="C"> bool</label> </div> <div class="question"> <p>17. Which of the following creates a dictionary?</p> <label><input type="radio" name="q17" value="A"> { "name": "John", "age": 25 }</label> <label><input type="radio" name="q17" value="B"> [ "name", "John" ]</label> <label><input type="radio" name="q17" value="C"> ( "name", "John" )</label> </div> <div class="question"> <p>18. Which keyword is used to exit a loop?</p> <label><input type="radio" name="q18" value="A"> exit</label> <label><input type="radio" name="q18" value="B"> break</label> <label><input type="radio" name="q18" value="C"> stop</label> </div> <div class="question"> <p>19. Which method is used to add an item to a list?</p> <label><input type="radio" name="q19" value="A"> add()</label> <label><input type="radio" name="q19" value="B"> append()</label> <label><input type="radio" name="q19" value="C"> push()</label> </div> <div class="question"> <p>20. Which operator is used for floor division?</p> <label><input type="radio" name="q20" value="A"> /</label> <label><input type="radio" name="q20" value="B"> //</label> <label><input type="radio" name="q20" value="C"> %</label> </div> <div class="question"> <p>21. Which file extension is used for Python files?</p> <label><input type="radio" name="q21" value="A"> .java</label> <label><input type="radio" name="q21" value="B"> .py</label> <label><input type="radio" name="q21" value="C"> .exe</label> </div> <div class="question"> <p>22. What is the correct way to create a tuple?</p> <label><input type="radio" name="q22" value="A"> (1, 2, 3)</label> <label><input type="radio" name="q22" value="B"> [1, 2, 3]</label> <label><input type="radio" name="q22" value="C"> {1, 2, 3}</label> </div> <div class="question"> <p>23. Which function converts a string into an integer?</p> <label><input type="radio" name="q23" value="A"> str()</label> <label><input type="radio" name="q23" value="B"> int()</label> <label><input type="radio" name="q23" value="C"> float()</label> </div> <div class="question"> <p>24. Which loop is best when the number of iterations is unknown?</p> <label><input type="radio" name="q24" value="A"> for</label> <label><input type="radio" name="q24" value="B"> while</label> <label><input type="radio" name="q24" value="C"> repeat</label> </div> <div class="question"> <p>25. What will <code>print(len([10,20,30]))</code> output?</p> <label><input type="radio" name="q25" value="A"> 2</label> <label><input type="radio" name="q25" value="B"> 3</label> <label><input type="radio" name="q25" value="C"> Error</label> </div>
+
+        <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+      </form>
+    </section>
+  </main>
+
+  <script>
+    function submitQuiz() {
+      let score = 0;
+      const total = 25;
+      const answers = {
+        q1: "B", q2: "B", q3: "B", q4: "B", q5: "B",
+        q6: "B", q7: "B", q8: "B", q9: "B", q10: "B",
+        q11: "A", q12: "B", q13: "C", q14: "A", q15: "A",
+        q16: "B", q17: "A", q18: "B", q19: "B", q20: "B",
+        q21: "B", q22: "A", q23: "B", q24: "B", q25: "B"
+      };
+
+      for (let q in answers) {
+        const selected = document.querySelector(`input[name=${q}]:checked`);
+        if (selected && selected.value === answers[q]) {
+          score++;
+        }
+      }
+
+      const percent = Math.round((score / total) * 100);
+      alert("You scored " + percent + "%");
+
+      if (percent >= 70) {
+        const user = localStorage.getItem("loggedInUser");
+        if (user) {
+          localStorage.setItem(`${user}_python_progress`, 33);
+          alert("Beginner Level Completed ✅ Progress saved!");
+        }
+      } else {
+        alert("You need at least 70% to pass. Try again!");
+      }
+    }
+  </script>
+</body>
+</html>

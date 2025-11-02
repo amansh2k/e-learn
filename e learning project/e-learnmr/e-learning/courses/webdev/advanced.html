@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Development - Advanced</title>
+<style>
+  body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f7fa; color:#333; }
+  header { background:#2c3e50; color:#fff; padding:15px 20px; text-align:center; }
+  header h1 { margin:0; font-size:26px; }
+  nav { margin-top:10px; }
+  nav a { color:#ecf0f1; text-decoration:none; margin:0 12px; font-weight:bold; }
+  nav a:hover { color:#1abc9c; }
+  main { padding:20px; max-width:900px; margin:auto; }
+  section { margin-bottom:30px; background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+  h2 { color:#2c3e50; border-left:5px solid #1abc9c; padding-left:10px; }
+  .video-container { text-align:center; margin:20px 0; }
+  .quiz-section p { font-weight:bold; margin-top:15px; }
+  label { display:block; margin:6px 0; cursor:pointer; }
+  button { background:#1abc9c; color:#fff; border:none; padding:10px 18px; font-size:16px; border-radius:6px; cursor:pointer; margin-top:15px; }
+  button:hover { background:#16a085; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Web Development - Advanced</h1>
+  <nav>
+    <a href="../../index.html">Home</a>
+    <a href="beginner.html">Beginner</a>
+    <a href="intermediate.html">Intermediate</a>
+    <a href="advanced.html">Advanced</a>
+    <a href="../../dashboard.html">Dashboard</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <h2>Advanced Web Development Topics</h2>
+    <p>Learn modern web development including React, API integration, advanced CSS, and performance optimization. Watch the tutorial video below and attempt the quiz to test your skills.</p>
+    <div class="video-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/Ke90Tje7VS0" title="Advanced Web Development" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="quiz-section">
+    <h2>Advanced Quiz (5 Questions)</h2>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. Which library is commonly used for building modern web interfaces?</p>
+        <label><input type="radio" name="q1" value="A"> Angular</label>
+        <label><input type="radio" name="q1" value="B"> Vue</label>
+        <label><input type="radio" name="q1" value="C"> React</label>
+      </div>
+
+      <div class="question">
+        <p>2. Which React hook is used for state management in functional components?</p>
+        <label><input type="radio" name="q2" value="A"> useState</label>
+        <label><input type="radio" name="q2" value="B"> useEffect</label>
+        <label><input type="radio" name="q2" value="C"> useContext</label>
+      </div>
+
+      <div class="question">
+        <p>3. Which method is used to fetch data from an API in JavaScript?</p>
+        <label><input type="radio" name="q3" value="A"> fetch()</label>
+        <label><input type="radio" name="q3" value="B"> getData()</label>
+        <label><input type="radio" name="q3" value="C"> axiosData()</label>
+      </div>
+
+      <div class="question">
+        <p>4. Which HTML tag is used to embed JavaScript code?</p>
+        <label><input type="radio" name="q4" value="A"> &lt;js&gt;</label>
+        <label><input type="radio" name="q4" value="B"> &lt;script&gt;</label>
+        <label><input type="radio" name="q4" value="C"> &lt;javascript&gt;</label>
+      </div>
+
+      <div class="question">
+        <p>5. Which CSS technique helps make websites responsive?</p>
+        <label><input type="radio" name="q5" value="A"> width</label>
+        <label><input type="radio" name="q5" value="B"> @media queries</label>
+        <label><input type="radio" name="q5" value="C"> display</label>
+      </div>
+
+      <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+  </section>
+</main>
+
+<script>
+function submitQuiz() {
+  let score = 0;
+  const answers = { q1:'C', q2:'A', q3:'A', q4:'B', q5:'B' };
+  for(let q in answers){
+    const sel = document.querySelector(`input[name=${q}]:checked`);
+    if(sel && sel.value === answers[q]) score++;
+  }
+  const percent = Math.round((score/5)*100);
+  alert(`You scored ${percent}%`);
+
+  if(percent>=70){
+    const user = localStorage.getItem("loggedInUser");
+    if(user){
+      let earned = JSON.parse(localStorage.getItem("earnedCerts") || "[]");
+      if(!earned.includes("Web Development - Advanced")) earned.push("Web Development - Advanced");
+      localStorage.setItem("earnedCerts", JSON.stringify(earned));
+      alert("Advanced Level Completed ✅ Certificate added to Dashboard!");
+    }
+  } else alert("You need 70% or more to pass. Try again!");
+}
+</script>
+
+</body>
+</html>

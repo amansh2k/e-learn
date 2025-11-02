@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signup - E-Learn</title>
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #e6f2e6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  header {
+    background: #228B22;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  header a {
+    color: #fff;
+    text-decoration: none;
+    margin-left: 15px;
+    font-weight: bold;
+  }
+  main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-container {
+    background: rgba(0, 128, 0, 0.1);
+    padding: 40px;
+    border-radius: 15px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0,128,0,0.3);
+  }
+  .form-container h2 {
+    color: #006400;
+    margin-bottom: 25px;
+  }
+  .form-container input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+  .form-container button {
+    width: 95%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 8px;
+    background: #32cd32;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.3s;
+  }
+  .form-container button:hover {
+    background: #28a428;
+  }
+  footer {
+    background: #228B22;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1 class="logo">E-Learn</h1>
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="login.html" class="auth-link">Login</a>
+  </nav>
+</header>
+
+<main>
+  <div class="form-container">
+    <h2>Create Your Account</h2>
+    <form id="signup-form">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="text" name="username" placeholder="Username" required>
+      <input type="password" name="password" placeholder="Password" required>
+      <button type="submit">Sign Up</button>
+    </form>
+    <p>Already have an account? <a href="login.html">Login</a></p>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 E-Learn</p>
+</footer>
+
+<script>
+document.getElementById("signup-form").addEventListener("submit", function(e) {
+  e.preventDefault();
+  const form = e.target;
+
+  const formData = new FormData();
+  formData.append("name", form.name.value);
+  formData.append("email", form.email.value);
+  formData.append("username", form.username.value);
+  formData.append("password", form.password.value);
+
+  fetch("https://script.google.com/macros/s/AKfycbx5YczfOSofPz9KoelY51NuWk7KUVxtvKrQQ0mjxT9LrtduYU66Z_ckWmpWkymL7hGZ0w/exec", {
+    method: "POST",
+    body: formData
+  })
+  .then(res => res.text())
+  .then(text => {
+    try {
+      const response = JSON.parse(text);
+      if (response.result === "success") {
+        alert("Signup successful! Redirecting to login...");
+        window.location.href = "login.html";
+      } else {
+        alert("Signup failed: " + (response.message || "Unknown error"));
+      }
+    } catch (err) {
+      alert("Unexpected response: " + text);
+    }
+  })
+  .catch(err => {
+    alert("Error: " + err);
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard - E-Learn</title>
+<style>
+  body { margin: 0; font-family: Arial, sans-serif; background: #f9f9f9; }
+  header {
+    width: 100%;
+    background: #28b485;
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .header-container { width: 100%; max-width: 1200px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+  .logo { font-size: 1.8rem; font-weight: bold; }
+  nav a, nav span { color: white; text-decoration: none; margin: 0 10px; cursor: pointer; }
+  nav a:hover, nav span:hover { text-decoration: underline; }
+
+  main { max-width: 1200px; margin: 40px auto; padding: 20px; text-align: center; }
+  h2 { color: #1565c0; margin-bottom: 20px; }
+  .dashboard-cards, .certificates { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 30px; }
+  .card, .certificate {
+    background: #e3f2fd;
+    padding: 30px 40px;
+    border-radius: 12px;
+    text-decoration: none;
+    color: #1565c0;
+    font-weight: bold;
+    transition: transform 0.3s, box-shadow 0.3s;
+    width: 220px;
+    text-align: center;
+    position: relative;
+  }
+  .card:hover, .certificate:hover { transform: translateY(-5px); box-shadow: 0 6px 15px rgba(0,0,0,0.2); }
+  .certificate button {
+    background: #1abc9c; color: #fff; border: none;
+    padding: 8px 15px; border-radius: 6px; cursor: pointer; margin-top: 15px;
+  }
+  .certificate button:hover { background: #16a085; }
+  footer { text-align: center; padding: 20px; background: #f0f0f0; margin-top: 50px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-container">
+    <h1 class="logo">E-Learn</h1>
+    <nav id="navbar">
+      <a href="index.html">Home</a>
+      <a href="login.html" class="auth-link">Login</a>
+      <a href="signup.html" class="auth-link">Signup</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <h2>Welcome to Your Dashboard</h2>
+  <p>Choose a course to continue learning:</p>
+  <div class="dashboard-cards">
+    <a href="courses/webdev/beginner.html" class="card">🌐 Web Development</a>
+    <a href="courses/python/python.html" class="card">🐍 Python Programming</a>
+    <a href="courses/cloud/cloud.html" class="card">☁️ Cloud Computing</a>
+  </div>
+
+  <h2>Your Earned Certificates</h2>
+  <div class="certificates" id="certificatesContainer">
+    <!-- Dynamically filled with earned certificates -->
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 E-Learn. Learn Better. Learn Smarter.</p>
+</footer>
+
+<!-- jsPDF library for PDF generation -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const nav = document.getElementById("navbar");
+  const user = localStorage.getItem("loggedInUser");
+
+  if(user){
+    document.querySelectorAll(".auth-link").forEach(el => el.remove());
+
+    // Username clickable to dashboard
+    const dashboardLink = document.createElement("span");
+    dashboardLink.innerHTML = `Welcome, <b>${user}</b>`;
+    dashboardLink.onclick = () => window.location.href="dashboard.html";
+
+    // Logout
+    const logoutLink = document.createElement("a");
+    logoutLink.href = "#";
+    logoutLink.textContent = "Logout";
+    logoutLink.onclick = () => {
+      localStorage.removeItem("loggedInUser");
+      window.location.href = "index.html";
+    };
+
+    nav.appendChild(dashboardLink);
+    nav.appendChild(logoutLink);
+  }
+
+  // Display earned certificates
+  const container = document.getElementById("certificatesContainer");
+  const earnedCerts = JSON.parse(localStorage.getItem("earnedCerts") || "[]");
+
+  if(earnedCerts.length === 0){
+    container.innerHTML = "<p>You haven't earned any certificates yet. Complete a course to earn one!</p>";
+  } else {
+    earnedCerts.forEach(cert => {
+      const certDiv = document.createElement("div");
+      certDiv.className = "certificate";
+      certDiv.innerHTML = `<h3>${cert}</h3>`;
+      
+      const viewBtn = document.createElement("button");
+      viewBtn.textContent = "View Certificate";
+      viewBtn.onclick = () => generateCertificatePDF(user, cert);
+      certDiv.appendChild(viewBtn);
+
+      container.appendChild(certDiv);
+    });
+  }
+});
+
+// Function to generate a PDF certificate
+function generateCertificatePDF(username, course) {
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  doc.setFontSize(22);
+  doc.setTextColor("#1565c0");
+  doc.text("🎓 Certificate of Completion 🎓", 105, 30, null, null, "center");
+
+  doc.setFontSize(16);
+  doc.setTextColor("#000");
+  doc.text(`This certificate is proudly presented to`, 105, 50, null, null, "center");
+
+  doc.setFontSize(20);
+  doc.setTextColor("#1abc9c");
+  doc.text(username, 105, 65, null, null, "center");
+
+  doc.setFontSize(16);
+  doc.setTextColor("#000");
+  doc.text(`for successfully completing the`, 105, 80, null, null, "center");
+
+  doc.setFontSize(18);
+  doc.setTextColor("#1565c0");
+  doc.text(course, 105, 95, null, null, "center");
+
+  doc.setFontSize(14);
+  doc.setTextColor("#000");
+  const today = new Date();
+  doc.text(`Date: ${today.toLocaleDateString()}`, 105, 115, null, null, "center");
+
+  doc.save(`${course}_Certificate.pdf`);
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Google Apps Script</title>
+</head>
+<body>
+  <h2>Google Apps Script Fetch Test</h2>
+  <button onclick="testFetch()">Test Connection</button>
+
+  <pre id="output" style="background:#eee; padding:1rem; border-radius:6px; margin-top:1rem;"></pre>
+
+  <script>
+    function testFetch() {
+      const url = "https://script.google.com/macros/s/AKfycbx5YczfOSofPz9KoelY51NuWk7KUVxtvKrQQ0mjxT9LrtduYU66Z_ckWmpWkymL7hGZ0w/exec";
+
+      fetch(url)
+        .then(res => res.text())  // use text to see raw output
+        .then(data => {
+          document.getElementById("output").textContent = data;
+        })
+        .catch(err => {
+          document.getElementById("output").textContent = "Error: " + err;
+        });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Python Advanced - E-Learn</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f3f7f9; }
+header { background:#28b485; color:white; padding:10px 20px; display:flex; justify-content:space-between; align-items:center; }
+header h1 { margin:0; font-size:1.8rem; }
+nav a { color:white; text-decoration:none; margin:0 10px; }
+nav a:hover { text-decoration:underline; }
+.auth-link { margin-left:10px; }
+
+.course-header { text-align:center; padding:30px; background:linear-gradient(to right,#7ed56f,#28b485); color:white; }
+.course-header h2 { font-size:2.2rem; margin-bottom:10px; }
+.course-header p { font-size:1.1rem; }
+
+.video-section { max-width:1000px; margin:30px auto; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:20px; }
+.video-section iframe { width:100%; height:200px; border-radius:10px; }
+
+.quiz-section { max-width:900px; margin:40px auto; background:white; padding:20px; border-radius:10px; box-shadow:0 2px 10px rgba(0,0,0,0.2); }
+.quiz-section h3 { margin-bottom:15px; color:#1565c0; }
+.quiz-section .question { margin-bottom:15px; }
+.quiz-section .question p { margin-bottom:5px; }
+.quiz-section button { padding:10px 15px; margin-top:10px; background:#28b485; color:white; border:none; border-radius:5px; cursor:pointer; }
+.quiz-section button:hover { background:#239b76; }
+
+.progress-bar-container { max-width:900px; margin:20px auto; background:#ddd; border-radius:10px; height:25px; }
+.progress-bar { height:25px; background:#28b485; width:0%; text-align:center; color:white; border-radius:10px; line-height:25px; }
+
+footer { text-align:center; padding:20px; background:#f0f0f0; margin-top:50px; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>E-Learn</h1>
+  <nav id="navbar">
+    <a href="index.html">Home</a>
+    <a href="login.html" class="auth-link">Login</a>
+    <a href="signup.html" class="auth-link">Signup</a>
+  </nav>
+</header>
+
+<section class="course-header">
+  <h2>Python Programming - Advanced</h2>
+  <p>Master advanced Python concepts with real-world projects and challenges.</p>
+</section>
+
+<section class="video-section">
+  <iframe src="https://www.youtube.com/embed/_uQrJ0TkZlc" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/Y8Tko2YC5hA" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/0Lt9w-BxKFQ" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/rfscVS0vtbw" allowfullscreen></iframe>
+  <iframe src="https://www.youtube.com/embed/HGOBQPFzWKo" allowfullscreen></iframe>
+</section>
+
+<section class="quiz-section">
+  <h3>Advanced Python Quiz (25 Questions)</h3>
+  <div id="quiz"></div>
+  <button onclick="checkQuiz()">Submit Quiz</button>
+  <div class="progress-bar-container"><div class="progress-bar" id="progressBar">0%</div></div>
+</section>
+
+<footer>
+  <p>&copy; 2025 E-Learn. Learn Better. Learn Smarter.</p>
+</footer>
+
+<script>
+// Navbar login/logout
+document.addEventListener("DOMContentLoaded", function() {
+  const nav = document.getElementById("navbar");
+  const user = localStorage.getItem("loggedInUser");
+  if(user){
+    document.querySelectorAll(".auth-link").forEach(el => el.remove());
+    const welcomeSpan = document.createElement("span");
+    welcomeSpan.innerHTML = `Welcome, <b>${user}</b>`;
+    welcomeSpan.style.margin = "0 10px";
+    const logoutLink = document.createElement("a");
+    logoutLink.href = "#"; logoutLink.textContent = "Logout"; logoutLink.style.marginLeft="10px";
+    logoutLink.onclick = function(){ localStorage.removeItem("loggedInUser"); window.location.href="index.html"; };
+    nav.appendChild(welcomeSpan); nav.appendChild(logoutLink);
+  }
+});
+
+// Advanced Python Quiz Data
+const quizData = [
+  {q:"Which of these is a Python decorator?", options:["@staticmethod","#decorator","$decorate","*static"], answer:0},
+  {q:"What is the purpose of __init__ method?", options:["Initialize objects","Destroy objects","Call functions","Private method"], answer:0},
+  {q:"Which module is used for multi-threading?", options:["threading","thread","process","concurrent"], answer:0},
+  {q:"How to open a file in binary mode?", options:["'rb'","'r'","'wb'","'b'"], answer:0},
+  {q:"Which of these handles context management?", options:["with","for","if","try"], answer:0},
+  {q:"Which method is used for object string representation?", options:["__str__","__repr__","__init__","__main__"], answer:0},
+  {q:"How to create a generator function?", options:["Using yield","Using return","Using def generator","Using class"], answer:0},
+  {q:"Which method raises exceptions?", options:["raise","throw","except","finally"], answer:0},
+  {q:"What does 'zip()' function do?", options:["Combine iterables","Split string","Sort list","Map values"], answer:0},
+  {q:"Which module helps in unit testing?", options:["unittest","pytest","test","check"], answer:0},
+  {q:"How to define a class method?", options:["@classmethod","def class","method","@method"], answer:0},
+  {q:"Which data structure is immutable?", options:["Tuple","List","Dictionary","Set"], answer:0},
+  {q:"How to create a private variable?", options:["__var","var","_var","$var"], answer:0},
+  {q:"Which method is used to sort a list in-place?", options:["sort()","sorted()","order()","arrange()"], answer:0},
+  {q:"What is the purpose of super()?", options:["Access parent class","Access child class","Call static method","Call private method"], answer:0},
+  {q:"Which function returns an iterator from a sequence?", options:["iter()","next()","sequence()","range()"], answer:0},
+  {q:"Which method reads a file line by line?", options:["readline()","read()","readlines()","open()"], answer:0},
+  {q:"How to catch multiple exceptions?", options:["except (TypeError, ValueError)","except all","except any","except multiple"], answer:0},
+  {q:"Which of these is used to create a set?", options:["set()","{}","[]","()"], answer:0},
+  {q:"Which of these modules is for date and time?", options:["datetime","time","calendar","date"], answer:0},
+  {q:"What does 'del' do?", options:["Deletes objects","Defines variables","Deletes classes","Deletes methods"], answer:0},
+  {q:"Which of these converts object to JSON?", options:["json.dumps()","json.load()","json.parse()","json.encode()"], answer:0},
+  {q:"Which method returns object length?", options:["len()","count()","size()","length()"], answer:0},
+  {q:"Which of these is used for recursion?", options:["Function calling itself","Loop","Class","Object"], answer:0},
+  {q:"Which function evaluates string as Python expression?", options:["eval()","exec()","parse()","input()"], answer:0}
+];
+
+// Render Quiz
+const quizContainer = document.getElementById("quiz");
+quizData.forEach((item,i)=>{
+  const div = document.createElement("div");
+  div.classList.add("question");
+  let qHtml = `<p><b>Q${i+1}.</b> ${item.q}</p>`;
+  item.options.forEach((opt,j)=>{
+    qHtml += `<label><input type="radio" name="q${i}" value="${j}"> ${opt}</label><br>`;
+  });
+  div.innerHTML = qHtml;
+  quizContainer.appendChild(div);
+});
+
+// Check Quiz & Progress
+function checkQuiz(){
+  let score=0;
+  quizData.forEach((item,i)=>{
+    const ans = document.querySelector(`input[name="q${i}"]:checked`);
+    if(ans && parseInt(ans.value)===item.answer) score++;
+  });
+  alert(`You scored ${score} / ${quizData.length}`);
+  const progress = Math.round((score/quizData.length)*100);
+  document.getElementById("progressBar").style.width = progress+"%";
+  document.getElementById("progressBar").textContent = progress+"%";
+
+  const user = localStorage.getItem("loggedInUser");
+  if(user){
+    const key = `${user}-python-advanced-progress`;
+    localStorage.setItem(key, progress);
+  }
+}
+</script>
+
+</body>
+</html>

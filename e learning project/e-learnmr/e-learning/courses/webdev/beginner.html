@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Development - Beginner</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f7fa; color:#333; }
+header { background:#2c3e50; color:#fff; padding:15px 20px; text-align:center; }
+header h1 { margin:0; font-size:26px; }
+nav { margin-top:10px; }
+nav a { color:#ecf0f1; text-decoration:none; margin:0 12px; font-weight:bold; }
+nav a:hover { color:#1abc9c; }
+main { padding:20px; max-width:900px; margin:auto; }
+section { margin-bottom:30px; background:#fff; padding:20px; border-radius:10px; box-shadow:0 2px 6px rgba(0,0,0,0.1); }
+h2 { color:#2c3e50; border-left:5px solid #1abc9c; padding-left:10px; }
+.video-container { text-align:center; margin:20px 0; }
+.quiz-section p { font-weight:bold; margin-top:15px; }
+label { display:block; margin:6px 0; cursor:pointer; }
+button { background:#1abc9c; color:#fff; border:none; padding:10px 18px; font-size:16px; border-radius:6px; cursor:pointer; margin-top:15px; }
+button:hover { background:#16a085; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Web Development - Beginner</h1>
+  <nav>
+    <a href="../../index.html">Home</a>
+    <a href="beginner.html">Beginner</a>
+    <a href="intermediate.html">Intermediate</a>
+    <a href="advanced.html">Advanced</a>
+    <a href="../../dashboard.html">Dashboard</a>
+  </nav>
+</header>
+
+<main>
+  <section>
+    <h2>Welcome to Web Development (Beginner)</h2>
+    <p>Learn HTML, CSS, and basic web page structure. Watch the video below and then take the quiz to test your skills.</p>
+    <div class="video-container">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/pQN-pnXPaVg" frameborder="0" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <section class="quiz-section">
+    <h2>Beginner Quiz (5 Questions)</h2>
+    <form id="quizForm">
+      <div class="question">
+        <p>1. HTML stands for?</p>
+        <label><input type="radio" name="q1" value="A"> Hyper Text Markup Language</label>
+        <label><input type="radio" name="q1" value="B"> High Tech Machine Language</label>
+        <label><input type="radio" name="q1" value="C"> Hyperlink Text Mark Language</label>
+      </div>
+
+      <div class="question">
+        <p>2. Which tag is used to create a paragraph?</p>
+        <label><input type="radio" name="q2" value="A"> &lt;para&gt;</label>
+        <label><input type="radio" name="q2" value="B"> &lt;p&gt;</label>
+        <label><input type="radio" name="q2" value="C"> &lt;h1&gt;</label>
+      </div>
+
+      <div class="question">
+        <p>3. CSS stands for?</p>
+        <label><input type="radio" name="q3" value="A"> Creative Style Sheets</label>
+        <label><input type="radio" name="q3" value="B"> Cascading Style Sheets</label>
+        <label><input type="radio" name="q3" value="C"> Computer Style Sheets</label>
+      </div>
+
+      <div class="question">
+        <p>4. How do you link an external CSS file?</p>
+        <label><input type="radio" name="q4" value="A"> &lt;link rel="stylesheet" href="style.css"&gt;</label>
+        <label><input type="radio" name="q4" value="B"> &lt;css src="style.css"&gt;</label>
+        <label><input type="radio" name="q4" value="C"> &lt;style src="style.css"&gt;</label>
+      </div>
+
+      <div class="question">
+        <p>5. Which tag is used for headings?</p>
+        <label><input type="radio" name="q5" value="A"> &lt;head&gt;</label>
+        <label><input type="radio" name="q5" value="B"> &lt;h1&gt; to &lt;h6&gt;</label>
+        <label><input type="radio" name="q5" value="C"> &lt;title&gt;</label>
+      </div>
+
+      <button type="button" onclick="submitQuiz()">Submit Quiz</button>
+    </form>
+  </section>
+</main>
+
+<script>
+function submitQuiz() {
+  let score = 0;
+  const answers = { q1:'A', q2:'B', q3:'B', q4:'A', q5:'B' };
+  for(let q in answers){
+    const sel = document.querySelector(`input[name=${q}]:checked`);
+    if(sel && sel.value === answers[q]) score++;
+  }
+  const percent = Math.round((score/5)*100);
+  alert(`You scored ${percent}%`);
+
+  if(percent>=70){
+    const user = localStorage.getItem("loggedInUser");
+    if(user){
+      let earned = JSON.parse(localStorage.getItem("earnedCerts") || "[]");
+      if(!earned.includes("Web Development - Beginner")) earned.push("Web Development - Beginner");
+      localStorage.setItem("earnedCerts", JSON.stringify(earned));
+      alert("Beginner Level Completed ✅ Certificate added to Dashboard!");
+    }
+  } else alert("You need 70% or more to pass. Try again!");
+}
+</script>
+
+</body>
+</html>

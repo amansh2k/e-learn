@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Online Compiler</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { font-family: sans-serif; background: #f8f9fa; padding: 30px; }
+    textarea { width: 100%; height: 200px; font-family: monospace; }
+    select, button { margin: 10px 0; padding: 8px; }
+    pre { background: #222; color: #0f0; padding: 10px; border-radius: 5px; }
+  </style>
+</head>
+<body>
+  <h2>💻 Code Compiler</h2>
+
+  <label>Select Language:</label>
+  <select id="language">
+    <option value="52">C++</option>
+    <option value="62">Java</option>
+    <option value="71">Python</option>
+    <option value="63">JavaScript</option>
+  </select>
+
+  <textarea id="source" placeholder="Write your code here..."></textarea>
+  <button id="run-btn">Run Code</button>
+
+  <h3>Output:</h3>
+  <pre id="output"></pre>
+
+  <script src="compiler.js"></script>
+</body>
+</html>

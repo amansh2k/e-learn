@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Web Development Course</title>
+  <link rel="stylesheet" href="../../styles.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f9f9f9;
+    }
+
+    /* Header */
+    header {
+      width: 100%;
+      background: #28b485; /* Green same as index */
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: center;
+    }
+    .header-container {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+    nav a, nav span {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      cursor: pointer;
+    }
+    nav a:hover, nav span:hover {
+      text-decoration: underline;
+    }
+
+    /* Main content */
+    main {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    h2 {
+      color: #1565c0;
+      margin-bottom: 20px;
+    }
+    .course-levels {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .level-card {
+      background: #e3f2fd;
+      padding: 30px 40px;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #1565c0;
+      font-weight: bold;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .level-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #f0f0f0;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <h1 class="logo">E-Learn</h1>
+      <nav id="navbar">
+        <a href="../../index.html">Home</a>
+        <a href="../../login.html" class="auth-link">Login</a>
+        <a href="../../signup.html" class="auth-link">Signup</a>
+      </nav>
+    </div>
+  </header>
+  
+
+  <!-- Main content -->
+  <main>
+    <h2>Web Development Course</h2>
+    <p>Select your level to begin learning:</p>
+    <div class="course-levels">
+      <a href="beginner.html" class="level-card">Beginner</a>
+      <a href="intermediate.html" class="level-card">Intermediate</a>
+      <a href="advanced.html" class="level-card">Advanced</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 E-Learn. Learn Better. Learn Smarter.</p>
+  </footer>
+
+  <script>
+    // Navbar login/logout logic
+    document.addEventListener("DOMContentLoaded", function() {
+      const nav = document.getElementById("navbar");
+      const user = localStorage.getItem("loggedInUser");
+      if (user) {
+        document.querySelectorAll(".auth-link").forEach(el => el.remove());
+        
+        // Username -> dashboard link
+        const dashboardLink = document.createElement("span");
+        dashboardLink.innerHTML = `Welcome, <b>${user}</b>`;
+        dashboardLink.onclick = function() {
+          window.location.href = "../../dashboard.html"; // redirect to dashboard
+        };
+
+        // Logout button
+        const logoutLink = document.createElement("a");
+        logoutLink.href = "#"; 
+        logoutLink.textContent = "Logout";
+        logoutLink.onclick = function() {
+          localStorage.removeItem("loggedInUser");
+          window.location.href = "../../index.html";
+        };
+
+        nav.appendChild(dashboardLink);
+        nav.appendChild(logoutLink);
+      }
+    });
+  </script>
+
+</body>
+</html>
